@@ -1,0 +1,10 @@
+#!RESULT ERROR
+#!CONNECTION ldap://134.251.81.13:10389
+#!DATE 2019-11-13T16:15:07.440
+#!ERROR 
+dn: dc=tcb-bank,dc=com,dc=tw
+objectclass: top
+objectclass: domain
+objectclass: extensibleObject
+dc: tcb-bank
+

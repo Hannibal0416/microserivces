@@ -1,0 +1,42 @@
+server:
+   port: 8090
+   
+spring:
+   application.name: ecs-oauth-service
+   #datasource:
+   #   url: jdbc:postgresql://localhost:5432/oauth2_jwt
+   #   username: postgres
+   #   password: 1qaz2wsx
+   #   cachePrepStmts: true
+   #   prepStmtCacheSize: 250
+   #   prepStmtCacheSqlLimit: 2048
+   #   useServerPrepStmts: true
+   #jpa:
+   #   openInView: false
+   #   show_sql: true
+   #   generate-ddl: true
+   #   hibernate:
+   #      ddl-auto: create-drop
+   #   properties:
+   #      hibernate.format_sql: true
+   #      hibernate.jdbc.lob.non_contextual_creation: true
+   ldap:
+      embedded:
+         base-dn: "dc=tcb-bank,dc=com,dc=tw"
+         port: 8389
+         url: "ldap://localhost:8389/dc=tcb-bank,dc=com,dc=tw"
+         ldif: "classpath:server.ldif"
+eureka:
+   client:
+      registerWithEureka: true
+      serviceUrl.defaultZone: http://localhost:8761/eureka/
+
+
+logging:
+   pattern.console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}:%L - %msg%n"
+#   level: 
+      #root: DEBUG
+      #org.hibernate.SQL: DEBUG
+      #org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+      #org.springframework.jdbc.core.JdbcTemplate: DEBUG
+      #org.springframework.jdbc.core.StatementCreatorUtils: TRACE

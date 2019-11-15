@@ -1,0 +1,8 @@
+server:
+   port: 8091
+spring:
+   application.name: ecs-example-service
+logging:
+   level:
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE

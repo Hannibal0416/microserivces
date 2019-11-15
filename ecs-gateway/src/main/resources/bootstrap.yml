@@ -1,0 +1,27 @@
+#Base Config
+server:
+   port: 8080
+spring:
+   application:
+      name: zuul-gateway
+management:
+#Actuator Config
+   server:
+      port: 8080
+   security:
+      enabled: false
+   endpoint:
+      restart:
+         enabled: true
+      health:
+         show-details: always
+      shutdown:
+         enabled: true
+   endpoints:
+      web:
+         exposure:
+            include: '*'
+logging:
+   path: /ecs/logs/
+   level:
+      com.self.sprintboot.learning.apigateway: DEBUG

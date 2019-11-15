@@ -1,0 +1,55 @@
+version: 1
+
+dn: dc=tcb-bank,dc=com,dc=tw
+objectClass: organization
+objectClass: dcObject
+objectClass: top
+dc: tcb-bank
+o: TCB
+
+dn: cn=admin,dc=tcb-bank,dc=com,dc=tw
+objectClass: organizationalRole
+objectClass: simpleSecurityObject
+cn: admin
+userPassword: {SSHA}3URq8X44S/Fw6Az4EzdetvD3iu31bJ4L
+description: LDAP administrator
+
+dn: ou=groups,dc=tcb-bank,dc=com,dc=tw
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=employee,dc=tcb-bank,dc=com,dc=tw
+objectClass: top
+objectClass: organizationalUnit
+ou: employee
+
+dn: cn=developers,ou=groups,dc=tcb-bank,dc=com,dc=tw
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: developers
+uniqueMember: uid=hannibal,ou=employee,dc=tcb-bank,dc=com,dc=tw
+uniqueMember: uid=ecsuser1,ou=employee,dc=tcb-bank,dc=com,dc=tw
+ou: developer
+
+dn: uid=ecsuser1,ou=employee,dc=tcb-bank,dc=com,dc=tw
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+objectClass: person
+cn: User3 ECS
+sn: ECS
+ou: employee
+uid: ecsuser1
+userPassword: {SSHA}b+T//o6CHDHgFZePNZmAncNMeKgsUL6ei3AIwQ==
+
+dn: uid=hannibal,ou=employee,dc=tcb-bank,dc=com,dc=tw
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+objectClass: person
+cn: Hannibal Han
+sn: Han
+uid: hannibal
+userPassword: {SSHA}dnDUFw+cEgjUOvY3a/YAkNomQK0BJFF5i3wnKQ==
+
