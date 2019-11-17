@@ -33,13 +33,12 @@ public class Swagger2Config {
 	}
 
 	/**
-	 * Docket 对象
 	 * 
 	 * @return
 	 */
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("ECS").description("Rest风格的Api文档")
-				.termsOfServiceUrl("").contact(new Contact("Abbot", "www.baidu.com", "471567754@qq.com")).version("1.0")
+		return new ApiInfoBuilder().title("ECS").description("RestDoc")
+				.termsOfServiceUrl("").contact(new Contact("Hannibal", "Hannibal", "wen-shun.han@dxc.com")).version("1.0")
 				.licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html").build();
 	}
 }

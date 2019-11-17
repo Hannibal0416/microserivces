@@ -26,23 +26,24 @@ import org.springframework.web.client.RestTemplate;
 public class CustomRemoteTokenService implements ResourceServerTokenServices {
 	Logger logger = LoggerFactory.getLogger(CustomRemoteTokenService.class);
 
+	@Autowired
     private RestOperations restTemplate;
 
     private AccessTokenConverter tokenConverter = new DefaultAccessTokenConverter();
 
-    @Autowired
-    public CustomRemoteTokenService() {
-        restTemplate = new RestTemplate();
-        ((RestTemplate) restTemplate).setErrorHandler(new DefaultResponseErrorHandler() {
-            @Override
-            // Ignore 400
-            public void handleError(ClientHttpResponse response) throws IOException {
-                if (response.getRawStatusCode() != 400) {
-                    super.handleError(response);
-                }
-            }
-        });
-    }
+	@Autowired
+	public CustomRemoteTokenService() {
+//		restTemplate = new RestTemplate();
+//		((RestTemplate) restTemplate).setErrorHandler(new DefaultResponseErrorHandler() {
+//			@Override
+//			// Ignore 400
+//			public void handleError(ClientHttpResponse response) throws IOException {
+//				if (response.getRawStatusCode() != 400) {
+//					super.handleError(response);
+//				}
+//			}
+//		});
+	}
 
     @Override
     public OAuth2Authentication loadAuthentication(String accessToken) throws AuthenticationException, InvalidTokenException {
@@ -50,10 +51,10 @@ public class CustomRemoteTokenService implements ResourceServerTokenServices {
     	System.out.println(accessToken);
     	HttpHeaders headers = new HttpHeaders();
         Map<String, Object> map = executeGet("http://ecs-oauth-service/oauth/check_token?token=" + accessToken, headers);
-        logger.info(map.toString());
         if (map == null || map.isEmpty() || map.get("error") != null) {
             throw new InvalidTokenException("Token not allowed");
         }
+        logger.info(map.toString());
         return tokenConverter.extractAuthentication(map);
     }
 

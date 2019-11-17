@@ -18,10 +18,12 @@ public class CustomTokenExtractor implements TokenExtractor {
 	@Override
 	public Authentication extract(HttpServletRequest request) {
 		logger.info("extract");
-		for(Cookie cookie : request.getCookies()) {
-		  if("access_token".equals(cookie.getName())) {
-		    return new PreAuthenticatedAuthenticationToken(cookie.getValue(), "");
-		  }
+		if(request.getCookies() != null) {
+			for(Cookie cookie : request.getCookies()) {
+				if("access_token".equals(cookie.getName())) {
+					return new PreAuthenticatedAuthenticationToken(cookie.getValue(), "");
+				}
+			}
 		}
 //		Enumeration<String> headers = request.getHeaders("Authorization");
 //		while (headers.hasMoreElements()) { // typically there is only one (most servers enforce that)

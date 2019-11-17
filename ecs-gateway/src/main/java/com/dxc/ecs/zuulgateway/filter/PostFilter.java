@@ -50,9 +50,12 @@ public class PostFilter extends ZuulFilter {
         Map<String, Object> responseMap = om.readValue(ctx.getResponseBody(), new TypeReference<Map<String, Object>>() {});
         Cookie accessToken = new Cookie("access_token", (String) responseMap.get("access_token"));
         accessToken.setHttpOnly(true);
+        accessToken.setPath("/api/");
         Cookie refreshToken = new Cookie("refresh_token", (String) responseMap.get("refresh_token"));
         refreshToken.setHttpOnly(true);
+        refreshToken.setPath("/api/");
         Cookie jti = new Cookie("jti", (String) responseMap.get("jti"));
+        jti.setPath("/");
         response.addCookie(accessToken);
         response.addCookie(refreshToken);
         response.addCookie(jti);
@@ -60,8 +63,16 @@ public class PostFilter extends ZuulFilter {
         e.printStackTrace();
       } catch (JsonProcessingException e) {
         e.printStackTrace();
-      }
+      } catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
+    response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+    response.addHeader("Access-Control-Allow-Credentials", "true");
+    response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-PINGOTHER");
+    
     System.out.println("Inside Post Filter");
 
     return null;

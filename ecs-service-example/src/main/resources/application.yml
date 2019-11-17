@@ -2,6 +2,15 @@ server:
    port: 8091
 spring:
    application.name: ecs-example-service
+   boot:
+     admin:
+       client:
+         url: http://localhost:9090
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 logging:
    level:
       org.hibernate.SQL: DEBUG

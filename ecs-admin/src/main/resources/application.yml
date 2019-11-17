@@ -1,0 +1,25 @@
+server:
+  port: ${server-port:9090}
+   
+spring:
+  application.name: ${springboot.app.name:ecs-admin}
+      #client:
+      #  url: http://localhost:8761
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl.defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: ALWAYS
+logging:
+  pattern.console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}:%L - %msg%n"
+

@@ -1,10 +1,13 @@
 package com.dxc.ecs.zuulgateway.filter;
 
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
@@ -37,6 +40,11 @@ public class PreFilter extends ZuulFilter {
       ctx.addZuulRequestHeader("Authorization", "Basic ZWNzYXBwOmVjc2FwcDEyMw==");
       ctx.setRequestQueryParams(reqParameterMap);
     }
+    Enumeration<String> headers = request.getHeaderNames();
+   while(headers.hasMoreElements()) {
+	   String header = headers.nextElement();
+	   System.out.println(header + ":" + request.getHeader(header));
+   }
     System.out.println("Request Method : " + request.getMethod() + " Request URL : " + request.getRequestURL().toString() + "Context Path:" +  request.getRequestURI());
     return null;
   }

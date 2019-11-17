@@ -1,6 +1,8 @@
 package com.dxc.ecs.oauth2.config;
 
 
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +14,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationManager;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableResourceServer
@@ -43,8 +48,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		logger.info("configure");
-		http.httpBasic().disable().anonymous().and().authorizeRequests().antMatchers("/user/**").authenticated()
-				.antMatchers("/public/**").permitAll();
+		http.httpBasic().disable().headers().disable().cors().disable().authorizeRequests().antMatchers("/user/**").authenticated()
+				.antMatchers("/public/**").permitAll().antMatchers("/**").permitAll();;
 	}
+
 }
 

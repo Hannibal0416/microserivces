@@ -50,8 +50,8 @@ public class OAuth2AuthorizationLDAPServerConfig extends AuthorizationServerConf
   @Autowired
   private ClientDetailsService clientDetailsService;
 
-  // private String ldapUrl="ldap://localhost:8389/dc=tcb-bank,dc=com,dc=tw";
-  private String ldapUrl = "ldap://134.251.81.13:10389/dc=tcb-bank,dc=com,dc=tw";
+   private String ldapUrl="ldap://localhost:8389/dc=tcb-bank,dc=com,dc=tw";
+//  private String ldapUrl = "ldap://134.251.81.13:10389/dc=tcb-bank,dc=com,dc=tw";
 
   @Value("${myapp.ldap.user-dn-patterns:uid={0}, ou=people}")
   // @Value("${myapp.ldap.user-dn-patterns:uid={0}, ou=employee}")
@@ -166,8 +166,8 @@ public class OAuth2AuthorizationLDAPServerConfig extends AuthorizationServerConf
   @Bean
   public DefaultSpringSecurityContextSource contextSource() {
     DefaultSpringSecurityContextSource dssc = new DefaultSpringSecurityContextSource(ldapUrl);
-    dssc.setUserDn("cn=admin,dc=tcb-bank,dc=com,dc=tw");
-    dssc.setPassword("1234qwer");
+//    dssc.setUserDn("cn=admin,dc=tcb-bank,dc=com,dc=tw");
+//    dssc.setPassword("1234qwer");
     return dssc;
   }
 
