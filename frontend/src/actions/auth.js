@@ -14,10 +14,11 @@ import {
 } from "./types";
 
 // CHECK TOKEN & LOAD USER
-export const loadUser = () => (dispatch, getState) => {
+export const loadUser = (e) => (dispatch, getState) => {
   const transport = axios.create({
     withCredentials: true
 });
+console.log(e.target)
 console.log(Cookies.get("jti"));
 console.log('access'+Cookies.get("access_token"));
   axios
