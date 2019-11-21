@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './Header.css'
 import { connect } from "react-redux";
-import { loadUser } from "../actions/auth";
+import { logout } from "../actions/auth";
 
 export class Header extends Component{
 
@@ -80,7 +80,7 @@ export class Header extends Component{
                             <a className="nav-link" href="#">關於...</a>
                         </li>
                     </ul>
-                    <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={this.props.loadUser}>登出</button> |
+                    <button className="btn btn-outline-secondary btn-sm my-2 my-sm-0" onClick={this.props.logout}>登出</button> |
                     <form className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="text" placeholder="Search"></input>
                         <button className="btn btn-outline-secondary btn-lg  my-2 my-sm-0" type="submit">搜尋</button>
@@ -98,5 +98,5 @@ const mapStateToProps = state => ({
     userInfo: state.auth.userInfo
 });
 export default connect(
-    mapStateToProps,{loadUser}
+    mapStateToProps,{logout}
 )(Header);
