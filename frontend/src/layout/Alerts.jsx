@@ -28,7 +28,12 @@ export class Alerts extends Component {
     // }
     const {error,alert} = this.props;
     if (error !== prevProps.error) {
-      alert.error(error.msg.error_description);
+      if(error.msg.error_description) {
+        alert.error(error.msg.error_description);
+      } else {
+        alert.error(error.msg);
+      }
+      
     }
 
   }
